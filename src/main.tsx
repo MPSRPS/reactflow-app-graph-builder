@@ -5,13 +5,10 @@ import App from './App';
 import './index.css';
 
 async function enableMocking() {
-  if (import.meta.env.DEV) {
-    const { worker } = await import('./mocks/browser');
-    return worker.start({
-      onUnhandledRequest: 'bypass',
-    });
-  }
-  return Promise.resolve();
+  const { worker } = await import('./mocks/browser');
+  return worker.start({
+    onUnhandledRequest: 'bypass',
+  });
 }
 
 const queryClient = new QueryClient({
