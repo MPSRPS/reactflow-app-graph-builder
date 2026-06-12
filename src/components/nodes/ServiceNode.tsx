@@ -9,18 +9,7 @@ import { useAppStore } from '@/store/useAppStore';
 type ServiceFlowNode = Node<NodeData, 'serviceNode'>;
 type ServiceNodeProps = NodeProps<ServiceFlowNode>;
 
-function getTabValue(data: NodeData, tab: MetricTab): number {
-  switch (tab) {
-    case 'cpu':
-      return data.cpu * 100;
-    case 'memory':
-      return Math.min(data.memory * 200, 100);
-    case 'disk':
-      return Math.min((data.disk / 20) * 100, 100);
-    case 'region':
-      return Math.min(data.region * 25, 100);
-  }
-}
+
 
 function ServiceNodeInner({ id, data, selected }: ServiceNodeProps) {
   const [activeTab, setActiveTab] = useState<MetricTab>('cpu');
@@ -35,7 +24,7 @@ function ServiceNodeInner({ id, data, selected }: ServiceNodeProps) {
     [setActiveInspectorTab]
   );
 
-  const sliderPercent = getTabValue(data, activeTab);
+
 
   const handleSliderChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -103,7 +92,7 @@ function ServiceNodeInner({ id, data, selected }: ServiceNodeProps) {
           className="sn-slider"
           aria-label={`${activeTab} slider`}
         />
-        <span className="sn-slider-value">{sliderPercent.toFixed(2)}</span>
+        <span className="sn-slider-value">{data.sliderValue.toFixed(2)}</span>
       </div>
 
       <div className="sn-footer">
