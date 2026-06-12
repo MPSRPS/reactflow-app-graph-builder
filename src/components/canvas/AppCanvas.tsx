@@ -26,7 +26,7 @@ import type { NodeData } from '@/types/app';
 const nodeTypes = { serviceNode: ServiceNode };
 
 function GraphLoader() {
-  const { selectedAppId, setSelectedNodeId } = useAppStore();
+  const { selectedAppId, setSelectedNodeId, setMobilePanelOpen } = useAppStore();
   const { data, isLoading, isError, refetch } = useAppGraph(selectedAppId);
   const { fitView } = useReactFlow();
   const [nodes, setNodes, onNodesChange] = useNodesState<Node<NodeData>>([]);
@@ -60,8 +60,13 @@ function GraphLoader() {
     ({ nodes: selected }: OnSelectionChangeParams) => {
       const first = selected[0];
       setSelectedNodeId(first ? first.id : null);
+      // On mobile viewports, automatically open the drawer so the
+      // inspector is immediately visible after tapping a node.
+      if (first && window.innerWidth < 768) {
+        setMobilePanelOpen(true);
+      }
     },
-    [setSelectedNodeId]
+    [setSelectedNodeId, setMobilePanelOpen]
   );
 
   const handleConnect = useCallback(
