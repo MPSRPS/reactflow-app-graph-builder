@@ -1,5 +1,5 @@
 import { useCallback, useId } from 'react';
-import { useReactFlow } from '@xyflow/react';
+import { useNodes, useReactFlow } from '@xyflow/react';
 import { useAppStore } from '@/store/useAppStore';
 import { NodeStatusPill } from '@/components/nodes/NodeStatusPill';
 import { InspectorTabs } from './InspectorTabs';
@@ -18,11 +18,17 @@ function isNodeData(data: unknown): data is NodeData {
 
 export function NodeInspector() {
   const { selectedNodeId } = useAppStore();
-  const { getNodes, setNodes } = useReactFlow();
+  const { setNodes } = useReactFlow();
+
+  // useNodes() subscribes to the ReactFlow store and re-renders whenever nodes
+  // change — unlike getNodes() which is a non-reactive snapshot and can return
+  // stale/empty data when the component first mounts after a selection event.
+  const nodes = useNodes();
+
   const nameInputId = useId();
   const descInputId = useId();
 
-  const selectedNode = getNodes().find((n) => n.id === selectedNodeId);
+  const selectedNode = nodes.find((n) => n.id === selectedNodeId);
   const nodeData = selectedNode && isNodeData(selectedNode.data) ? selectedNode.data : null;
 
   const updateNodeData = useCallback(
@@ -64,8 +70,8 @@ export function NodeInspector() {
 
   if (!nodeData) {
     return (
-      <div className="inspector-loading" role="status" aria-label="Node not found">
-        <p>Node not found</p>
+      <div className="inspector-loading" role="status" aria-label="Loading node data">
+        <div className="spinner-ring" style={{ width: 20, height: 20, borderWidth: 2 }} />
       </div>
     );
   }

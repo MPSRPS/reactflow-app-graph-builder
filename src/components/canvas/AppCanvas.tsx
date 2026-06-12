@@ -118,6 +118,11 @@ function GraphLoader() {
       deleteKeyCode={['Delete', 'Backspace']}
       fitView
       colorMode="dark"
+      panOnDrag={true}
+      panOnScroll={false}
+      zoomOnScroll={true}
+      zoomOnPinch={true}
+      zoomOnDoubleClick={false}
       proOptions={{ hideAttribution: false }}
     >
       <Background variant={BackgroundVariant.Dots} gap={20} size={1.2} color="#333" />
@@ -128,6 +133,7 @@ function GraphLoader() {
         }}
         maskColor="rgba(0,0,0,0.6)"
         style={{ background: '#1a1a1a', borderRadius: 8 }}
+        className="canvas-minimap"
       />
       <CanvasControls />
     </ReactFlow>

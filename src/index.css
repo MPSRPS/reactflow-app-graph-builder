@@ -1113,6 +1113,15 @@ html, body, #root {
   stroke-dasharray: 5 3;
 }
 
+/* ── Inspector loading ──────────────────────────── */
+.inspector-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 12px;
+  color: hsl(var(--muted-foreground));
+}
+
 /* ── Responsive ─────────────────────────────────── */
 @media (max-width: 767px) {
   .app-shell {
@@ -1124,7 +1133,29 @@ html, body, #root {
     display: none;
   }
 
+  /* FAB: bottom-LEFT so it never overlaps canvas controls or MiniMap */
   .mobile-panel-btn {
     display: flex;
+    bottom: 20px;
+    left: 16px;
+    right: auto;
+  }
+
+  /* Canvas controls: bottom-RIGHT on mobile, away from FAB */
+  .canvas-controls {
+    left: auto;
+    right: 16px;
+    bottom: 20px;
+    transform: none;
+  }
+
+  /* Hide Add Node button text on mobile — icon only saves space */
+  .ctrl-btn-primary span {
+    display: none;
+  }
+
+  /* Hide MiniMap on mobile — too small to be useful */
+  .canvas-minimap {
+    display: none !important;
   }
 }
