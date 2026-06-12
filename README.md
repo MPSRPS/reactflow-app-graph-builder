@@ -59,24 +59,22 @@ sidebar/     — App list with search and skeleton loading
 ```
 
 ## Features
-
-- ✅ 4-zone dark layout matching the screenshot
-- ✅ ReactFlow dotted canvas with drag, select, delete, zoom/pan
-- ✅ Fit view on graph load
-- ✅ Custom `ServiceNode` cards (header, metrics, tabs, gradient slider, status pill, AWS logo)
-- ✅ Node inspector (status badge, Config/Runtime tabs, synced slider, editable name/description)
-- ✅ Slider ↔ input bidirectional sync, persisted to node data
-- ✅ TanStack Query: loading skeleton, error state with retry, cached results
-- ✅ MSW: 300ms simulated latency, 10% random graph failure rate
-- ✅ Zustand: all 4 required fields
-- ✅ Dark/light mode toggle
-- ✅ **Add Node** button (bonus)
-- ✅ Animated `smoothstep` edges (bonus)
-- ✅ MiniMap (bonus)
-- ✅ Keyboard shortcuts: `Escape` to deselect node (bonus)
-- ✅ Mobile: right panel becomes bottom slide-over drawer
-- ✅ TypeScript strict mode throughout
-- ✅ ESLint + Prettier configured
+-  ReactFlow dotted canvas with drag, select, delete, zoom/pan
+-  Fit view on graph load
+-  Custom `ServiceNode` cards (header, metrics, tabs, gradient slider, status pill, AWS logo)
+-  Node inspector (status badge, Config/Runtime tabs, synced slider, editable name/description)
+-  Slider ↔ input bidirectional sync, persisted to node data
+-  TanStack Query: loading skeleton, error state with retry, cached results
+-  MSW: 300ms simulated latency, 10% random graph failure rate
+-  Zustand: all 4 required fields
+-  Dark/light mode toggle
+-  **Add Node** button (bonus)
+-  Animated `smoothstep` edges (bonus)
+-  MiniMap (bonus)
+-  Keyboard shortcuts: `Escape` to deselect node (bonus)
+-  Mobile: right panel becomes bottom slide-over drawer
+-  TypeScript strict mode throughout
+-  ESLint + Prettier configured
 
 ## Known Limitations
 
